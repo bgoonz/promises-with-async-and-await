@@ -38,10 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
             setInnerHTML(ele, clueObj);
           });
     });
-
-    responseButton.addEventListener("click", (event) => {
-      if (playerInput === clueObj.answer) {
-      }
-    });
   });
+  // Apparently this is implemented at the end. After the promise and async/await methods are built.
+  //   responseButton.addEventListener("click", (event) => {
+  //     if (playerInput.value === clueObj.answer) {
+  //     }
+  //   });
+  // });
 });
