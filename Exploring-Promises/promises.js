@@ -32,18 +32,16 @@ const starterPromise = () => {
 //starterPromise().then(() => wrapper());
 
 // const wait = async (time, cb) => {
-//   setTimeout(() => {
+//   await setTimeout(() => {
 //     cb();
 //   }, time);
 // };
 
-const wait = (time, cb) => {
-  return new Promise((resolve, reject) => {
-    resolve(
-      setTimeout(() => {
-        cb();
-      }, time)
-    );
+const wait = async (time, cb) => {
+  await new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(cb());
+    }, time);
   });
 };
 
@@ -52,7 +50,22 @@ const superWrapper = async () => {
   await wrapper();
 };
 
-superWrapper();
+const rejecterPromise = () => {
+  return new Promise((resolve, reject) => {
+    let value = Math.random() + 2;
+    return value < 2.5
+      ? resolve(console.log("The number is less than 2.5"))
+      : reject("ERROR: The number isn't less than 2.5");
+  });
+};
+
+superWrapper().then(() => {
+  for (let i = 0; i < 10; i++) {
+    wait(2000, rejecterPromise).catch((err) => console.error(err));
+  }
+});
+
+console.log("This will probably run first");
 
 /*
 async keyword returns a promise object.
