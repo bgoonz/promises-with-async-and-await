@@ -8,7 +8,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fetch": "^1.1.0",
     "node-fetch": "^2.6.1"
   },
   "keywords": [],

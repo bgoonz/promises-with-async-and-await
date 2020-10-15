@@ -1,5 +1,4 @@
-
-/* 
+/*
 Properties and values
 At its most basic level, CSS consists of two components:
 
@@ -29,37 +28,42 @@ background-color
 color
 border
 Important: If a property is unknown, or if a value is not valid for a given property, the declaration is processed as invalid. It is completely ignored by the browser's CSS engine.
-CSS @rules provide instruction for what CSS should perform or how it should behave. 
-Some @rules are simple with just a keyword and a value. 
+CSS @rules provide instruction for what CSS should perform or how it should behave.
+Some @rules are simple with just a keyword and a value.
 For example,  @import imports a stylesheet into another CSS stylesheet:
 
 @import 'styles2.css';
-One common @rule that you are likely to encounter is @media, 
-which is used to create media queries. 
+One common @rule that you are likely to encounter is @media,
+which is used to create media queries.
 Media queries use conditional logic for applying CSS styling. */
 body {
-    background-color: #DFDFDF;
-  }
-  
-  #game-board {
-    background-color: white;
-    margin: auto;
-    padding: 1em;
-    width: 600px;
-  }
-  
-  #answer, #score {
-    font-size: 1.5em;
-    margin: 1.25em 0;
-  }
-  
-  #question, #value {
-    font-size: 1.25em;
-    margin: 1.25em 0;
-  }
-  
-  #category-title, #invalid-count {
-    font-size: 1em;
-    margin: 1.25em 0;
-  }
-  
+  background-color: #dfdfdf;
+}
+
+#game-board {
+  background-color: white;
+  margin: auto;
+  padding: 1em;
+  width: 600px;
+}
+
+#answer,
+#score {
+  font-size: 1.5em;
+  margin: 1.25em 0;
+}
+
+#question,
+#value {
+  font-size: 1.25em;
+  margin: 1.25em 0;
+}
+
+#category-title,
+#invalid-count {
+  font-size: 1em;
+  margin: 1.25em 0;
+}
+.is-hidden {
+  display: none;
+}
