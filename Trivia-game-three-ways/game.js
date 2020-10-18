@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const answerDiv = document.getElementById("answer");
   const valueDiv = document.getElementById("value");
   const scoreDiv = document.getElementById("score");
+  let playerScore = 0;
   const idArr = [
     "question",
     "answer",
@@ -21,16 +22,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkValid = document.getElementById("invalid-count");
 
   const setInnerHTML = (id, object) => {
-    let element = document.getElementById(id);
+    const element = document.getElementById(id);
     if (object[id] !== null) {
-      if (id === "invalidCount") {
-        object.invalidCount > 0 && object.invalidCount !== undefined
-          ? (checkValid.innerHTML = "invalid")
-          : (checkValid.innerHTML = "valid");
-      } else if (id === "category-title") {
-        element.innerHTML = object.category.title;
-      } else {
-        element.innerHTML = object[id];
+      switch (id) {
+        case "invalidCount":
+          object.invalidCount > 0 && object.invalidCount !== undefined
+            ? (checkValid.innerHTML = "invalid")
+            : (checkValid.innerHTML = "valid");
+          break;
+        case "category-title":
+          element.innerHTML = object.category.title;
+          break;
+        default:
+          element.innerHTML = object[id];
       }
     }
   };
@@ -40,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   asyncBtn.addEventListener("click", async () => {
     try {
       const get = await getClueFromAsync();
+      console.log(get);
       idArr.forEach((ele) => {
         setInnerHTML(ele, get);
       });
@@ -52,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   promBtn.addEventListener("click", () => {
     const get = getClueFromPromise();
+    console.log(get);
     get.then((res) => {
       idArr.forEach((ele) => {
         setInnerHTML(ele, res);
@@ -74,9 +80,16 @@ document.addEventListener("DOMContentLoaded", () => {
   //--------------------------user response--------------------------------------
 
   responseButton.addEventListener("click", () => {
-    if (playerInput.value === answerDiv.value) {
-      scoreDiv.innerHTML += valueDiv.value;
+    const input = playerInput.value.toLowerCase();
+    const answer = answerDiv.innerText.toLowerCase();
+    if (input === answer) {
+      playerScore += Number.parseInt(valueDiv.innerText);
+      scoreDiv.innerHTML = playerScore;
+    } else {
+      playerScore -= Number.parseInt(valueDiv.innerText);
+      scoreDiv.innerHTML = playerScore;
     }
+    playerInput.value = "";
   });
 });
 
